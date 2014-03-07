@@ -5,17 +5,7 @@ var fs = require('fs'),
 	i = 0,
 	pages = [];
 	xml = '<?xml version="1.0" encoding="UTF-8"?>' + "\r\n" + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + "\r\n",
-	d = new Date(),
-	currentDate = d.getFullYear() + '-';
-
-if (Number(d.getMonth() + 1) < 10) {
-	currentDate += '0';
-}
-currentDate += d.getMonth() + 1 + '-';
-if (Number(d.getDate()) < 10) {
-	currentDate += '0';
-}
-currentDate += d.getDate();
+	site = 'change-to-your-sitename.com';
 
 fs.readdir('./', function (err, list) {
 	'use strict';
@@ -30,7 +20,17 @@ fs.readdir('./', function (err, list) {
 		}
 	}
 	for (i = 0; i < pages.length; i++) {
-		xml += "\t" + '<url>' + "\r\n\t\t" + '<loc>http://replace-with-your-sitename.com/' + pages[i] + '</loc>' + "\r\n";
+		var mtdate = new Date(fs.statSync('./' + pages[i]).mtime);
+		var currentDate = mtdate.getFullYear() + '-';
+		if (Number(mtdate.getMonth() + 1) < 10) {
+			currentDate += '0';
+		}
+		currentDate += mtdate.getMonth() + 1 + '-';
+		if (Number(mtdate.getDate()) < 10) {
+			currentDate += '0';
+		}
+		currentDate += mtdate.getDate();
+		xml += "\t" + '<url>' + "\r\n\t\t" + '<loc>http://' + site + '/' + pages[i] + '</loc>' + "\r\n";
 		xml += "\t\t" + '<lastmod>' + currentDate + '</lastmod>' + "\r\n";
 		xml += "\t\t" + '<changefreq>weekly</changefreq>' + "\r\n";
 		xml += "\t\t" + '<priority>0.5</priority>' + "\r\n\t" + '</url>' + "\r\n";
