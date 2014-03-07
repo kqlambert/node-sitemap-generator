@@ -13,7 +13,7 @@ var fs = require("fs"),
 		output: process.stdout
 	});
 
-rl.question("What is your site name? (example: google.com)", function(answer) {
+rl.question("What is your site name? (example: your-site-name.com)", function(answer) {
 	"use strict";
 	if (answer) {
 		site = answer;
