@@ -21,7 +21,7 @@ rl.question("What is your site name? (example: your-site-name.com)", function(an
 	}
 	rl.question("Would you like to include file extensions? (example: .html) [y/n]", function(answer2) {
 		if (answer2) {
-			if (answer2.toLowerCase() !== 'y') {
+			if (answer2.toLowerCase() !== "y") {
 				ext = false;
 			}
 		}
@@ -49,8 +49,8 @@ rl.question("What is your site name? (example: your-site-name.com)", function(an
 				currentDate += mtdate.getDate();
 				var page = pages[i];
 				if (!ext) {
-					page = page.replace('.html', '');
-					page = page.replace('.php', '');
+					page = page.replace(".html", "");
+					page = page.replace(".php", "");
 				}
 				xml += "\t" + "<url>" + "\r\n\t\t" + "<loc>http://" + site + "/" + page + "</loc>" + "\r\n";
 				xml += "\t\t" + "<lastmod>" + currentDate + "</lastmod>" + "\r\n";
