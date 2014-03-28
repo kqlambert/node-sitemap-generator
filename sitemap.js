@@ -33,10 +33,12 @@ rl.question("What is your site name? (example: your-site-name.com)", function(an
 			// adds found files to pages array
 			for (i = 0; i < list.length; i++) {
 				if (list[i].indexOf(".html") !== -1 || list[i].indexOf(".php") !== -1) {
-					if (list[i] === "index.html" || list[i] === "index.php") {
-						pages.push("");
-					} else {
-						pages.push(list[i]);
+					if (list[i] !== "404.html" && list[i] !== "404.php") {
+						if (list[i] === "index.html" || list[i] === "index.php") {
+							pages.push("");
+						} else {
+							pages.push(list[i]);
+						}
 					}
 				}
 			}
